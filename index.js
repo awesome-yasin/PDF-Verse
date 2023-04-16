@@ -4,6 +4,7 @@ const mergeRouter = require('./routes/merge');
 const splitRouter = require('./routes/split');
 const editorRouter = require('./routes/editor');
 const watermarkRouter = require('./routes/watermark');
+const deleteRouter = require('./routes/delete');
 const cors = require('cors');
 
 const app = express();
@@ -20,6 +21,7 @@ app.use(mergeRouter);
 app.use(splitRouter);
 app.use(editorRouter);
 app.use(watermarkRouter);
+app.use(deleteRouter);
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.listen(8080, () => {
