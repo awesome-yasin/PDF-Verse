@@ -1,0 +1,86 @@
+{
+  "name": "pdfmake",
+  "version": "0.2.7",
+  "description": "Client/server side PDF printing in pure JavaScript",
+  "main": "src/printer.js",
+  "browser": "build/pdfmake.js",
+  "directories": {
+    "test": "tests"
+  },
+  "dependencies": {
+    "@foliojs-fork/linebreak": "^1.1.1",
+    "@foliojs-fork/pdfkit": "^0.13.0",
+    "iconv-lite": "^0.6.3",
+    "xmldoc": "^1.1.2"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.14.5",
+    "@babel/core": "^7.14.6",
+    "@babel/plugin-transform-modules-commonjs": "^7.14.5",
+    "@babel/preset-env": "^7.14.7",
+    "assert": "^2.0.0",
+    "babel-loader": "^8.2.2",
+    "brfs": "^2.0.2",
+    "browserify-zlib": "^0.2.0",
+    "buffer": "^6.0.3",
+    "core-js": "3.19.0",
+    "eslint": "^7.29.0",
+    "eslint-plugin-jsdoc": "^35.4.1",
+    "expose-loader": "^3.0.0",
+    "file-saver": "^2.0.5",
+    "mocha": "^9.0.1",
+    "npm-run-all": "^4.1.5",
+    "process": "^0.11.10",
+    "rewire": "^5.0.0",
+    "shx": "^0.3.3",
+    "sinon": "^11.1.1",
+    "stream-browserify": "^3.0.0",
+    "string-replace-webpack-plugin": "^0.1.3",
+    "svg-to-pdfkit": "^0.1.8",
+    "terser-webpack-plugin": "^5.1.4",
+    "transform-loader": "^0.2.4",
+    "util": "^0.12.4",
+    "webpack": "^5.42.0",
+    "webpack-cli": "^4.7.2"
+  },
+  "engines": {
+    "node": ">=12"
+  },
+  "scripts": {
+    "test": "run-s build mocha",
+    "build": "run-s build:3rdparty build:browser",
+    "build:3rdparty": "shx cp node_modules/svg-to-pdfkit/source.js src/3rd-party/svg-to-pdfkit/source.js && shx cp node_modules/svg-to-pdfkit/LICENSE src/3rd-party/svg-to-pdfkit/LICENSE",
+    "build:browser": "webpack",
+    "build:browser-standard-fonts": "webpack --config webpack-standardfonts.config.js",
+    "build:vfs": "node build-vfs.js \"./examples/fonts\"",
+    "build:examples": "node build-examples.js",
+    "lint": "eslint \"./src/**/*.js\" \"./tests/**/*.js\" \"./examples/**/*.js\"",
+    "mocha": "mocha --reporter spec \"./tests/**/*.js\"",
+    "playground": "node dev-playground/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/bpampuch/pdfmake.git"
+  },
+  "keywords": [
+    "pdf",
+    "javascript",
+    "printing",
+    "layout"
+  ],
+  "author": "Bartek Pampuch <bartosz.pampuch@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/bpampuch/pdfmake/issues"
+  },
+  "homepage": "http://pdfmake.org",
+  "config": {
+    "blanket": {
+      "pattern": "src",
+      "data-cover-never": [
+        "node_modules",
+        "tests"
+      ]
+    }
+  }
+}

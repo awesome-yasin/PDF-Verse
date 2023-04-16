@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+	<title>PDF Verse - Edit PDF online</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prettify/r298/prettify.min.css">
+	<link rel="stylesheet" href="/css/pdfeditor.css">
+</head>
+<body>
+<div class="toolbar">
+	<div class="tool">
+		<span>PDF Verse</span>
+	</div>
+	<div class="tool">
+		<label for="">Brush size</label>
+		<input type="number" class="form-control text-right" value="1" id="brush-size" max="50">
+	</div>
+	<div class="tool">
+		<label for="">Font size</label>
+		<select id="font-size" class="form-control">
+			<option value="10">10</option>
+			<option value="12">12</option>
+			<option value="16" selected>16</option>
+			<option value="18">18</option>
+			<option value="24">24</option>
+			<option value="32">32</option>
+			<option value="48">48</option>
+			<option value="64">64</option>
+			<option value="72">72</option>
+			<option value="108">108</option>
+		</select>
+	</div>
+	<div class="tool">
+		<button class="color-tool active" style="background-color: #212121;"></button>
+		<button class="color-tool" style="background-color: red;"></button>
+		<button class="color-tool" style="background-color: blue;"></button>
+		<button class="color-tool" style="background-color: green;"></button>
+		<button class="color-tool" style="background-color: white;"></button>
+	</div>
+	<div class="tool">
+		<button class="tool-button active"><i class="fa fa-hand-paper-o" title="Free Hand" onclick="enableSelector(event)"></i></button>
+	</div>
+	<div class="tool">
+		<button class="tool-button"><i class="fa fa-pencil" title="Pencil" onclick="enablePencil(event)"></i></button>
+	</div>
+	<div class="tool">
+		<button class="tool-button"><i class="fa fa-font" title="Add Text" onclick="enableAddText(event)"></i></button>
+	</div>
+	<div class="tool">
+		<button class="tool-button"><i class="fa fa-long-arrow-right" title="Add Arrow" onclick="enableAddArrow(event)"></i></button>
+	</div>
+	<div class="tool">
+		<button class="tool-button"><i class="fa fa-square-o" title="Add rectangle" onclick="enableRectangle(event)"></i></button>
+	</div>
+	<div class="tool">
+		<button class="tool-button"><i class="fa fa-picture-o" title="Add an Image" onclick="addImage(event)"></i></button>
+	</div>
+	<div class="tool">
+		<button class="btn btn-danger btn-sm" onclick="deleteSelectedObject(event)"><i class="fa fa-trash"></i></button>
+	</div>
+	<div class="tool">
+		<button class="btn btn-danger btn-sm" onclick="clearPage()">Clear Page</button>
+	</div>
+	<div class="tool">
+		<button class="btn btn-info btn-sm" onclick="showPdfData()">{}</button>
+	</div>
+	<div class="tool">
+		<button class="btn btn-light btn-sm" onclick="savePDF()"><i class="fa fa-save"></i> Save</button>
+	</div>
+</div>
+<div id="pdf-container"></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.6.347/pdf.min.js"></script>
+<script>pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.6.347/pdf.worker.min.js';</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/4.3.0/fabric.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.2.0/jspdf.umd.min.js"></script>
+<script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prettify/r298/prettify.min.js"></script>
+<script src="/js/arrow.js"></script>
+<script src="/js/pdfannotate.js"></script>
+<script>
+	var pdf = new PDFAnnotate("pdf-container", `<%= dataUri %>`, {
+  onPageUpdated(page, oldData, newData) {
+    console.log(page, oldData, newData);
+  },
+  ready() {
+    console.log("Plugin initialized successfully");
+  },
+  scale: 1.5,
+  pageImageCompression: "SLOW", // FAST, MEDIUM, SLOW(Helps to control the new PDF file size)
+});
+
+function changeActiveTool(event) {
+    var element = $(event.target).hasClass("tool-button")
+      ? $(event.target)
+      : $(event.target).parents(".tool-button").first();
+    $(".tool-button.active").removeClass("active");
+    $(element).addClass("active");
+}
+
+function enableSelector(event) {
+    event.preventDefault();
+    changeActiveTool(event);
+    pdf.enableSelector();
+}
+
+function enablePencil(event) {
+    event.preventDefault();
+    changeActiveTool(event);
+    pdf.enablePencil();
+}
+
+function enableAddText(event) {
+    event.preventDefault();
+    changeActiveTool(event);
+    pdf.enableAddText();
+}
+
+function enableAddArrow(event) {
+    event.preventDefault();
+    changeActiveTool(event);
+    pdf.enableAddArrow();
+}
+
+function addImage(event) {
+    event.preventDefault();
+    pdf.addImageToCanvas()
+}
+
+function enableRectangle(event) {
+	event.preventDefault();
+  changeActiveTool(event);
+  pdf.setColor('#fff');
+  pdf.setBorderColor('#fff');
+  pdf.enableRectangle();
+}
+
+function deleteSelectedObject(event) {
+  event.preventDefault();
+  pdf.deleteSelectedObject();
+}
+
+function savePDF() {
+    // pdf.savePdf();
+    pdf.savePdf('sample.pdf'); // save with given file name
+}
+
+function clearPage() {
+    pdf.clearActivePage();
+}
+
+function showPdfData() {
+    var string = pdf.serializePdf();
+    $('#dataModal .modal-body pre').first().text(string);
+    PR.prettyPrint();
+    $('#dataModal').modal('show');
+}
+
+$(function () {
+    $('.color-tool').click(function () {
+        $('.color-tool.active').removeClass('active');
+        $(this).addClass('active');
+        color = $(this).get(0).style.backgroundColor;
+        pdf.setColor(color);
+    });
+
+    $('#brush-size').change(function () {
+        var width = $(this).val();
+        pdf.setBrushSize(width);
+    });
+
+    $('#font-size').change(function () {
+        var font_size = $(this).val();
+        pdf.setFontSize(font_size);
+    });
+});
+
+</script>
+
+</body>
+</html>

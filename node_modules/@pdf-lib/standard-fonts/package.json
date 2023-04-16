@@ -1,0 +1,55 @@
+{
+  "name": "@pdf-lib/standard-fonts",
+  "version": "1.0.0",
+  "description": "Metrics for the Standard 14 PDF fonts and their encodings",
+  "main": "lib/index.js",
+  "unpkg": "dist/standard-fonts.min.js",
+  "module": "es/index.js",
+  "types": "lib/index.d.ts",
+  "scripts": {
+    "make": "node Makefile.js",
+    "lint": "node Makefile.js lint",
+    "clean": "node Makefile.js clean",
+    "typecheck": "tsc --noEmit",
+    "afmToJson": "node Makefile.js afmToJson",
+    "encodingsToJson": "node Makefile.js encodingsToJson",
+    "releaseNext": "node Makefile.js releaseNext",
+    "releaseLatest": "node Makefile.js releaseLatest"
+  },
+  "repository": "https://github.com/Hopding/standard-fonts.git",
+  "keywords": [
+    "afm",
+    "adobe",
+    "font",
+    "metrics",
+    "ascii",
+    "pdf"
+  ],
+  "author": "Andrew Dillon <andrew.dillon.j@gmail.com>",
+  "contributors": [
+    "Christopher Brown <io@henrian.com> (http://henrian.com)"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/Hopding/standard-fonts",
+  "dependencies": {
+    "pako": "^1.0.6"
+  },
+  "devDependencies": {
+    "@types/mz": "^0.0.32",
+    "@types/node": "^10.5.1",
+    "@types/pako": "^1.0.0",
+    "base64-arraybuffer": "^0.1.5",
+    "mz": "^2.7.0",
+    "prettier": "^1.15.3",
+    "rollup": "^0.68.2",
+    "rollup-plugin-commonjs": "^9.2.0",
+    "rollup-plugin-json": "^3.1.0",
+    "rollup-plugin-node-resolve": "^4.0.0",
+    "rollup-plugin-terser": "^3.0.0",
+    "shelljs": "^0.8.3",
+    "ts-node": "^7.0.1",
+    "tslint": "^5.12.0",
+    "tslint-config-prettier": "^1.17.0",
+    "typescript": "^2.9.2"
+  }
+}

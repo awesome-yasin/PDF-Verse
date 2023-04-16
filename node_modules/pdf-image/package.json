@@ -1,0 +1,23 @@
+{
+  "name": "pdf-image",
+  "version": "2.0.0",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mooz/node-pdf-image.git"
+  },
+  "bugs": {
+    "url": "https://github.com/mooz/node-pdf-image/issues"
+  },
+  "homepage": "https://github.com/mooz/node-pdf-image#readme",
+  "dependencies": {
+    "es6-promise": "~4.2.4"
+  },
+  "devDependencies": {
+    "chai": "~4.1.2",
+    "mocha": "~5.1.1"
+  },
+  "scripts": {
+    "test": "mocha tests/*"
+  }
+}
