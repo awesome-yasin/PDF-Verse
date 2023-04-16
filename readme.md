@@ -8,7 +8,7 @@
 <div align="center">
 
   <p align="center">
-PDF Verse offers a suite of free and user-friendly tools to edit, convert and manipulate PDFs. <br /> Merge, split, compress, convert, rotate, unlock and watermark PDFs effortlessly.
+PDF Verse offers a suite of free and user-friendly  PDF Editor tools to edit, convert and manipulate PDFs. <br /> Merge, split, compress, convert, rotate, unlock and watermark PDFs effortlessly.
 </p>
 </div>
     <a href="https://pdf-verse.vercel.app/"><strong>View Demo »</strong></a>
