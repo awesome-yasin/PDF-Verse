@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Delete PDF Pages</title>
+</head>
+<body>
+  <h1>Delete PDF Pages</h1>
+  <form action="/delete-pages" method="POST" enctype="multipart/form-data">
+    <label for="pdfFile">Select a PDF file:</label>
+    <input type="file" name="pdfFile" required>
+    <br>
+    <label for="pageNumbers">Enter the page numbers to be deleted (comma-separated):</label>
+    <input type="text" name="pageNumbers" required>
+    <br>
+    <button type="submit">Delete Pages</button>
+  </form>
+</body>
+</html>
