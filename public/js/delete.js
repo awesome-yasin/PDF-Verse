@@ -43,6 +43,8 @@ function addPdfToList(name, url) {
 	var a = document.createElement("a");
 	a.innerText = name;
 	a.href = url;
+    a.target = "_blank";
+
 
 	// Create a delete button element
 	var button = document.createElement("button");
