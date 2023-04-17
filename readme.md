@@ -328,7 +328,7 @@ Contributions are what make the open source community such an amazing place to b
 
 If you have suggestions for adding or removing projects, feel free to open an issue to discuss it, or directly create a pull request with necessary changes.
 
-1. Fork it (<https://github.com/awesome-yasin/PDF-Verse/fork>)
+1. Fork it (`git clone https://github.com/awesome-yasin/PDF-Verse.git`)
 2. Create your feature branch (`git checkout -b feature/fooBar`)
 3. Commit your changes (`git commit -am 'Add some fooBar'`)
 4. Push to the branch (`git push origin feature/fooBar`)
