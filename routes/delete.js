@@ -20,7 +20,7 @@ router.post('/delete-pages', upload.single('pdfFile'), async (req, res) => {
 
     let numDeletedPages = 0;
     for (const pageNum of pageNumbers) {
-      pdfDoc.removePage(pageNum);
+      pdfDoc.removePage(pageNum - 1 - numDeletedPages);
       numDeletedPages++;
     }
 
