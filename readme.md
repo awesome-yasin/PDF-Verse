@@ -8,7 +8,7 @@
 <div align="center">
 
   <p align="center">
-PDF Verse offers a suite of free and user-friendly tools to edit, convert and manipulate PDFs. <br /> Merge, split, compress, convert, rotate, unlock and watermark PDFs effortlessly.
+PDF Verse offers a suite of free and user-friendly  PDF Editor tools to edit, convert and manipulate PDFs. <br /> Merge, split, compress, convert, rotate, unlock and watermark PDFs effortlessly.
 </p>
 </div>
     <a href="https://pdf-verse.vercel.app/"><strong>View Demo »</strong></a>
@@ -328,7 +328,7 @@ Contributions are what make the open source community such an amazing place to b
 
 If you have suggestions for adding or removing projects, feel free to open an issue to discuss it, or directly create a pull request with necessary changes.
 
-1. Fork it (<https://github.com/awesome-yasin/PDF-Verse/fork>)
+1. Fork it (`git clone https://github.com/awesome-yasin/PDF-Verse.git`)
 2. Create your feature branch (`git checkout -b feature/fooBar`)
 3. Commit your changes (`git commit -am 'Add some fooBar'`)
 4. Push to the branch (`git push origin feature/fooBar`)
