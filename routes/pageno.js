@@ -7,7 +7,7 @@ const storage = multer.memoryStorage();
 const upload = multer({ storage: storage });
 
 router.get('/add-page-number', (req, res) => {
-  res.render('addPageNumber');
+  res.render('addpagenumber');
 });
 
 router.post('/add-page-number', upload.single('pdfFile'), async (req, res) => {
