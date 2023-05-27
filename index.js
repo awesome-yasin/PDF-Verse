@@ -6,6 +6,8 @@ const editorRouter = require('./routes/editor');
 const watermarkRouter = require('./routes/watermark');
 const deleteRouter = require('./routes/delete');
 const pageNoRoute = require('./routes/pageno');
+const rotateRoute = require('./routes/rotatepdf');
+const compressRoute = require('./routes/compress');
 const cors = require('cors');
 
 const app = express();
@@ -24,6 +26,8 @@ app.use(editorRouter);
 app.use(watermarkRouter);
 app.use(deleteRouter);
 app.use(pageNoRoute);
+app.use(rotateRoute);
+app.use(compressRoute);
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.listen(8080, () => {

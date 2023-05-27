@@ -1,0 +1,8 @@
+prefix=/usr/local/Cellar/poppler/0.66.0
+libdir=/usr/local/Cellar/poppler/0.66.0/lib
+includedir=/usr/local/Cellar/poppler/0.66.0/include
+
+Name: poppler-splash
+Description: Splash backend for Poppler PDF rendering library
+Version: 0.66.0
+Requires: poppler = 0.66.0
