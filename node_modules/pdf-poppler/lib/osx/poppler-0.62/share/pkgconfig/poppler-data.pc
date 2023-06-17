@@ -1,8 +1,0 @@
-poppler_datadir=/usr/local/Cellar/poppler/0.62.0/share/poppler
-
-Name: poppler-data
-Description: Encoding files for use with poppler
-Version: 0.4.8
-
-Cflags: -DPOPPLER_DATADIR=/usr/local/Cellar/poppler/0.62.0/share/poppler
-
