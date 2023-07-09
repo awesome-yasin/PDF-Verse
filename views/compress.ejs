@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+  <title>PDF Verse - Compress PDF online</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/blueimp-file-upload/10.7.0/css/jquery.fileupload.min.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/blueimp-file-upload/10.7.0/js/jquery.fileupload.min.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"></script>
+  <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" />
+  <link rel="stylesheet" href="/css/merger.css">
+
+  <style>
+    /* Styles for the note box */
+    .note-box {
+      display: none;
+     margin: 0;
+      top: 0;
+      left: 0;
+      right: 0;
+      background-color: #f8f9fa;
+      padding: 10px;
+      z-index: 9999;
+      transition: top 0.3s ease;
+    }
+
+    .note-box p {
+      margin-bottom: 0;
+      color: rgb(250, 5, 5);
+      font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    }
+
+    .note-span {
+      font-weight: bold;
+      color: rgb(250, 5, 5);
+      font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    }
+
+   
+
+    .main-container {
+      margin-top: 50px;
+    }
+  </style>
+</head>
+<body>
+  <div class="nav-bar"></div>
+
+  <!-- Add the note box below the navigation bar -->
+  <div class="note-box alert alert-info alert-dismissible fade show" role="alert">
+    <div class="container">
+      <p class="mb-0"> <span class="note-span">Note: </span> This PDF compression tool is not deployed yet as I am using serverless deployment, and it requires some command scripts to run. Currently, it only works in local storage (Do Have Ghostscript Installed in Your System), but soon it will be deployed as I am planning to deploy those scripts to AWS EC2 Virtual Servers. <br> I have tested PDF compression with a 100MB PDF file. In low compression, it compressed the file to 65MB, in normal compression to 53MB, in high compression to 6MB, and in extreme compression to 1.8MB.</p>
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+  </div>
+
+  <%- include('includes/nav.ejs') %>
+   
+  <div class="container main-container">
+    <h1 class="text-center mt-5 font-weight-bold pt-4 heading-main">Compress PDF</h1>
+    <h5 class="text-center mt-3 font-weight-bold heading-main">Optimize PDF File Size without Compromising on Document Quality and Visual Integrity</h5>
+    <div class="row justify-content-center mt-5">
+      <div class="col-md-10 text-center">
+        <form action="/compress" method="POST" enctype="multipart/form-data" id="pdf-dropzone">
+          <div class="fallback">
+            <div class="custom-file-upload custom-file-upload-color-1" id="pdf-dropzone">
+              <img src="/images/pdf.png" alt="" srcset="" width="72" height="72">
+              <label for="pdfs">Choose PDF Files</label>
+              <input type="file" name="pdf" id="pdfs" accept=".pdf" required class="form-control-file">
+            </div> <br><br>
+            <label for="rotationDirection">Select Compression Level: </label>
+            <select name="compressionLevel" id="rotationDirection">
+              <option value="low">Low Compression</option>
+              <option value="normal">Normal Compression</option>
+              <option value="high">High Compression</option>
+              <option value="extreme">Extreme Compression</option>
+            </select>
+          </div>
+          <input type="submit" value="Compress PDF" class="btn-lg common-btn pl-5 pr-5 mb-5 mt-5">
+        </form>
+        <div class="container">
+          <div class="pdfhead mt-4 text-center mb-3"></div>
+          <ul id="pdf-list" class="list-group mb-4"></ul>
+          <div class="row">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <%- include('includes/alltools.ejs') %>
+  <%- include('includes/services.ejs') %>
+  <%- include('includes/howto.ejs') %>
+  <%- include('includes/footer.ejs') %>
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script>
+    // Show the note box on page load
+    $(document).ready(function() {
+      $('.note-box').slideDown(400, function() {
+        $('.note-box').css('top', $('.nav-bar').outerHeight() + 'px');
+      });
+    });
+
+    // Hide the note box when the close button is clicked
+    $('.note-box .close').click(function() {
+      $('.note-box').slideUp(400);
+    });
+  </script>
+</body>
+</html>

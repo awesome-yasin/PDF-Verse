@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Merge PDFs</title>
+  </head>
+  <body>
+    
+    <h1>Merge PDFs</h1>
+    
+    <% if (pdfFiles && pdfFiles.length > 0) { %>
+      <h2>Uploaded PDF files:</h2>
+      <ul>
+        <% for (let i = 0; i < pdfFiles.length; i++) { %>
+          <li><a href="/<%= pdfFiles[i] %>"><%= pdfFiles[i] %></a></li>
+        <% } %>
+      </ul>
+      <form action="/merge" method="post" enctype="multipart/form-data">
+        <input type="hidden" name="pdfFiles" value="<%= JSON.stringify(pdfFiles) %>">
+        <input type="submit" value="Merge PDFs">
+      </form>
+    <% } else { %>
+      <p>No PDF files uploaded yet.</p>
+    <% } %>
+  </body>
+</html>
