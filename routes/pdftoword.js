@@ -1,6 +1,5 @@
 const express = require('express');
 const router = express.Router();
-const fs = require('fs');
 const pdfParse = require('pdf-parse');
 const officegen = require('officegen');
 const multer  = require('multer');
@@ -28,24 +27,8 @@ router.post('/convert', upload.single('file'), async (req, res) => {
 
     docx.createP().addText(dataBuffer.text);
 
-    let out = fs.createWriteStream('output.docx');
-
-    out.on('error', function(err) {
-        console.log(err);
-    });
-
-    docx.generate(out);
-
-    // Wait for the file write operation to finish, then download
-    out.on('finish', function() {
-        res.download('output.docx', function(err){
-            if (err) {
-                console.log(err);
-            } else {
-                console.log('File downloaded successfully');
-            }
-        });
-    });
+    res.attachment('output.docx');
+    docx.generate(res);
 });
 
 module.exports = router;
