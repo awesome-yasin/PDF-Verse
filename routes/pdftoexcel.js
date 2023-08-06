@@ -35,13 +35,7 @@ function applyCellStyle(cell, isHeader = false) {
 
 
 router.get('/pdftoexcel', (req, res) => {
-    res.render('pdftoexcel', {
-        title: 'Convert PDF to Excel',
-        options: {
-            formats: ['.xlsx', '.xls'],
-            tableOptions: ['Preserve', 'Flatten'],
-        }
-    });
+    res.render('pdftoexcel');
 });
 
 router.post('/excel-convert', upload.single('file'), (req, res) => {
