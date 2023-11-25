@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+  <title>PDF Verse - PDF to Word Converter</title>
+  <link rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/blueimp-file-upload/10.7.0/css/jquery.fileupload.min.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/blueimp-file-upload/10.7.0/js/jquery.fileupload.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"></script>
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" />
+<link rel="stylesheet" href="/css/merger.css">
+</head>
+<body>
+    <%- include('includes/nav.ejs') %>
+   
+    <div class="container main-container">
+        <h1 class="text-center mt-5 font-weight-bold pt-4 heading-main">Convert PDF to Word</h1>
+        <h5 class="text-center mt-3 font-weight-bold heading-main">Convert PDF to word easily. It will extract all word of PDF and convert it to word</h5>
+        <div class="row justify-content-center mt-5">
+          <div class="col-md-10 text-center">
+            <form action="/convert" method="post" enctype="multipart/form-data" id="pdf-dropzone">
+              <div class="fallback">
+                <div class="custom-file-upload custom-file-upload-color-1" id="pdf-dropzone">
+                    <img src="/images/pdf.png" alt="" srcset="" width="72" height="72">
+                  <label for="pdfs">Choose PDF Files</label>
+                  <input type="file" name="file" id="pdfs" accept=".pdf" required required class="form-control-file">
+                </div>
+              </div>
+              <input type="submit" value="Convert PDF" class="btn-lg common-btn pl-5 pr-5 mb-5 mt-5">
+            </form>
+            <div class="container">
+              <div class="pdfhead mt-4 text-center mb-3"></div>
+              <ul id="pdf-list" class="list-group mb-4"></ul>
+              <div class="row">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+
+
+    <%- include('includes/alltools.ejs') %>
+
+    <%- include('includes/services.ejs') %>
+
+      <%- include('includes/howto.ejs') %>
+
+        <%- include('includes/footer.ejs') %>
+
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+        <script src="/js/split.js"></script>
+</body>
+</html>
