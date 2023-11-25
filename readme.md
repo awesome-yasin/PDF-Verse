@@ -23,23 +23,21 @@ PDF Verse offers a suite of free and user-friendly  PDF Editor tools to edit, co
 ## Project Status[![](https://raw.githubusercontent.com/aregtech/areg-sdk/master/docs/img/pin.svg)](#project-status)
 <table class="no-border">
 <tr>
-    <td><img src="https://badgen.net/github/stars/awesome-yasin/PDF-Verse" alt="CMake build"/></td>
-    <td><img src="https://badgen.net/github/forks/awesome-yasin/PDF-Verse" alt="CMake build"/></td>
-    <td><img src="https://img.shields.io/github/search/awesome-yasin/PDF-Verse/download" alt="MS Build"/></td>
-        <td><img src="https://gpvc.arturio.dev/awesome-yasin" alt="C++ solution"/></td>
+    <td><img src="https://badgen.net/github/stars/awesome-yasin/PDF-Verse" alt="Total Stars"/></td>
+    <td><img src="https://badgen.net/github/forks/awesome-yasin/PDF-Verse" alt="Total Forks"/></td>
+    <td><img src="https://img.shields.io/github/search/awesome-yasin/PDF-Verse/download" alt="Download Count"/></td>
+	<td><img src="https://img.shields.io/website?down_color=red&down_message=offline&up_color=green&up_message=online&url=https%3A%2F%2Fpdf-verse.vercel.app%2F" alt="Online status"/></td>
   </tr>
   <tr>
-    <td><img src="https://img.shields.io/tokei/lines/github/awesome-yasin/PDF-Verse" alt="CMake build"/></td>
-    <td><img src="https://img.shields.io/github/languages/code-size/awesome-yasin/PDF-Verse?style=flat-square" alt="CMake build"/></td>
-    <td><img src="https://img.shields.io/github/repo-size/awesome-yasin/PDF-Verse" alt="MS Build"/></td>
-        <td><img src="https://img.shields.io/github/languages/top/awesome-yasin/PDF-Verse" alt="C++ solution"/></td>
+    <td><img src="https://img.shields.io/tokei/lines/github/awesome-yasin/PDF-Verse" alt="total lines"/></td>
+    <td><img src="https://img.shields.io/github/languages/code-size/awesome-yasin/PDF-Verse?style=flat-square" alt="code size"/></td>
+    <td><img src="https://img.shields.io/github/repo-size/awesome-yasin/PDF-Verse" alt="repo size"/></td>
+        <td><img src="https://img.shields.io/github/languages/top/awesome-yasin/PDF-Verse" alt="top language"/></td>
   </tr>
   <tr>
-      <td><img src="https://img.shields.io/github/last-commit/awesome-yasin/PDF-Verse" alt="CodeQL"/></td>
-    <td><img src="https://img.shields.io/github/issues/awesome-yasin/PDF-Verse" alt="Operating systems"/></td>
-    <td><img src="https://img.shields.io/github/issues-pr/awesome-yasin/PDF-Verse" alt="CPU Architect"/></td>
-        <td><img src="https://img.shields.io/website?down_color=red&down_message=offline&up_color=green&up_message=online&url=https%3A%2F%2Fpdf-verse.vercel.app%2F" alt="CPU Architect"/></td>
-
+      <td><img src="https://img.shields.io/github/last-commit/awesome-yasin/PDF-Verse" alt="Last commit"/></td>
+    <td><img src="https://img.shields.io/github/issues/awesome-yasin/PDF-Verse" alt="total issues"/></td>
+    <td><img src="https://img.shields.io/github/issues-pr/awesome-yasin/PDF-Verse" alt="issues"/></td>
   </tr>
 </table>
 <br />
@@ -88,7 +86,7 @@ PDF Verse is an intuitive, powerful and fully responsive web app that provides a
       <td>Add text or an image to each page of a PDF file</td>
     </tr>
     <tr>
-      <td>Delete PDF Pages</td>
+      <td><a href="https://pdf-verse.vercel.app/delete">Delete PDF Pages</td>
       <td>Remove pages from a PDF document</td>
     </tr>
     <tr>
@@ -96,11 +94,11 @@ PDF Verse is an intuitive, powerful and fully responsive web app that provides a
       <td>Reduce the file size of a PDF document</td>
     </tr>
     <tr>
-      <td>Rotate PDF Files</td>
+      <td><a href="https://pdf-verse.vercel.app/rotate">Rotate PDF Files</td>
       <td>Change the orientation of a PDF document</td>
     </tr>
     <tr>
-      <td>Add Page Numbers</td>
+      <td><a href="https://pdf-verse.vercel.app/add-page-number">Add Page Numbers</td>
       <td>Insert page numbers into a PDF document</td>
     </tr>
     <tr>
@@ -124,7 +122,7 @@ PDF Verse is an intuitive, powerful and fully responsive web app that provides a
       <td>Fix errors in a damaged PDF file</td>
     </tr>
     <tr>
-      <td>PDF To Word Convert</td>
+      <td><a href="https://pdf-verse.vercel.app/pdf-to-word">PDF To Word Convert</td>
       <td>Convert a PDF document to a Word file</td>
     </tr>
     <tr>
