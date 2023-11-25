@@ -6,6 +6,7 @@ const editorRouter = require('./routes/editor');
 const watermarkRouter = require('./routes/watermark');
 const deleteRouter = require('./routes/delete');
 const pageNoRoute = require('./routes/pageno');
+const rotatePdf = require('./routes/rotate')
 const cors = require('cors');
 
 const app = express();
@@ -24,6 +25,7 @@ app.use(editorRouter);
 app.use(watermarkRouter);
 app.use(deleteRouter);
 app.use(pageNoRoute);
+app.use(rotatePdf)
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.listen(8080, () => {
