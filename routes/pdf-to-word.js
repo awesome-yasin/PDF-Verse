@@ -7,7 +7,7 @@ const storage = multer.memoryStorage();
 const upload = multer({ storage: storage });
 
 router.get('/pdf-to-word', (req, res) => {
-    res.render('pdf-t=oword');
+    res.render('pdf-to-word');
 });
 
 router.post('/convert', upload.single('file'), async (req, res) => {
