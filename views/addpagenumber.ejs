@@ -1,34 +1,80 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8">
-    <title>Add Page Numbers to PDF</title>
-  </head>
+    <title>PDF Verse - Watermark PDF online</title>
+    <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/blueimp-file-upload/10.7.0/css/jquery.fileupload.min.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/blueimp-file-upload/10.7.0/js/jquery.fileupload.min.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"></script>
+  <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" />
+  <link rel="stylesheet" href="/css/merger.css">  </head>
   <body>
-    <h1>Add Page Numbers to PDF</h1>
-    <form method="POST" action="/add-page-number" enctype="multipart/form-data">
-      <label for="pdfFile">Select PDF file to add page numbers to:</label>
-      <input type="file" name="pdfFile" id="pdfFile" required>
-      <br>
-      <label for="format">Select position of page numbers:</label>
-      <select name="format" id="format">
-        <option value="bottom-right">Bottom Right</option>
-        <option value="top-left">Top Left</option>
-        <option value="top-right">Top Right</option>
-        <option value="bottom-left">Bottom Left</option>
-      </select>
-      <br>
-      <label for="size">Select size of page numbers:</label>
-      <select name="size" id="size">
-        <option value="small">Small</option>
-        <option value="medium">Medium</option>
-        <option value="large">Large</option>
-      </select>
-      <br>
-      <label for="color">Select color of page numbers:</label>
-      <input type="color" name="color" id="color" value="#000000">
-      <br>
-      <button type="submit">Add Page Numbers</button>
-    </form>
+
+    <%- include('includes/nav.ejs') %>
+
+
+    <div class="container main-container" style="width: 90%;">
+      <h1 class="text-center mt-5 font-weight-bold pt-4 heading-main">Add Page number to PDF</h1>
+      <h5 class="text-center mt-3 font-weight-bold heading-main">Add page numbers into PDFs with ease. Choose your positions, dimensions, typography.</h5>
+      <div class="row justify-content-center mt-5">
+        <div class="col-md-10 text-center">
+          <form method="POST" action="/add-page-number" enctype="multipart/form-data" id="pdf-dropzone">
+            <div class="fallback">
+              <div class="custom-file-upload custom-file-upload-color-1" id="pdf-dropzone">
+                <img src="/images/pdf.png" alt="" srcset="" width="72" height="72">
+                <label for="pdfs">Choose PDF Files</label>
+                <input type="file" name="pdfFile" id="pdfs" accept=".pdf" required class="form-control-file">
+              </div>
+            </div>
+            <div class="row mt-5">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="fontFamily">Select position of page numbers:</label>
+                  <select name="format" class="form-control">
+                    <option value="bottom-right">Bottom Right</option>
+                    <option value="bottom-middle">Bottom Middle</option>
+                    <option value="bottom-left">Bottom Left</option>
+                    <option value="top-right">Top Right</option>
+                    <option value="top-middle">Top Middle</option>
+                    <option value="top-left">Top Left</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="size">Select size of page numbers:</label>
+                  <select name="size" id="size" class="form-control">
+                    <option value="small">Small</option>
+                    <option value="medium">Medium</option>
+                    <option value="large">Large</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            
+            <input type="submit" value="Download PDF" class="btn-lg common-btn pl-5 pr-5 mb-5 mt-5">
+          </form>
+          <div class="container">
+            <div class="pdfhead mt-4 text-center mb-3"></div>
+            <ul id="pdf-list" class="list-group mb-4"></ul>
+            <div class="row">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <%- include('includes/alltools.ejs') %>
+
+    <%- include('includes/services.ejs') %>
+
+      <%- include('includes/howto.ejs') %>
+
+        <%- include('includes/footer.ejs') %>
+
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+        <script src="/js/pageno.js"></script>
   </body>
 </html>
