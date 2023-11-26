@@ -102,35 +102,15 @@ PDF Verse is an intuitive, powerful and fully responsive web app that provides a
       <td>Insert page numbers into a PDF document</td>
     </tr>
     <tr>
-      <td>ESign PDF</td>
-      <td>Add an electronic signature to a PDF document</td>
-    </tr>
-    <tr>
-      <td>Unlock PDF</td>
-      <td>Remove password protection from a PDF file</td>
-    </tr>
-    <tr>
-      <td>Protect PDF</td>
-      <td>Add password protection to a PDF document</td>
-    </tr>
-    <tr>
-      <td>Redact PDF</td>
-      <td>Remove sensitive content from a PDF file</td>
-    </tr>
-    <tr>
-      <td>Repair PDF</td>
-      <td>Fix errors in a damaged PDF file</td>
-    </tr>
-    <tr>
       <td><a href="https://pdf-verse.vercel.app/pdf-to-word">PDF To Word Convert</td>
       <td>Convert a PDF document to a Word file</td>
     </tr>
     <tr>
-      <td>PDF To Excel Convert</td>
+      <td><a href="https://pdf-verse.vercel.app/pdf-to-excel">PDF To Excel Convert</td>
       <td>Convert a PDF document to an Excel file</td>
     </tr>
     <tr>
-      <td>PDF To PPT Convert</td>
+      <td><a href="https://pdf-verse.vercel.app/pdf-to-ppt">PDF To PPT Convert</td>
       <td>Convert a PDF document to a PowerPoint presentation</td>
     </tr>
     <tr>
@@ -138,7 +118,7 @@ PDF Verse is an intuitive, powerful and fully responsive web app that provides a
       <td>Convert a PDF document to a JPEG image file</td>
     </tr>
     <tr>
-      <td>PDF To PNG Convert</td>
+      <td><a href="https://pdf-verse.vercel.app/pdf-to-png">PDF To PNG Convert</td>
       <td>Convert a PDF document to a PNG image file</td>
     </tr>
     <tr>
@@ -187,6 +167,26 @@ PDF Verse is an intuitive, powerful and fully responsive web app that provides a
   <td>Text To PDF Convert</td>
   <td>Convert a plain text file to a PDF document</td>
 </tr>
+ <tr>
+      <td>ESign PDF</td>
+      <td>Add an electronic signature to a PDF document</td>
+    </tr>
+    <tr>
+      <td>Unlock PDF</td>
+      <td>Remove password protection from a PDF file</td>
+    </tr>
+    <tr>
+      <td>Protect PDF</td>
+      <td>Add password protection to a PDF document</td>
+    </tr>
+    <tr>
+      <td>Redact PDF</td>
+      <td>Remove sensitive content from a PDF file</td>
+    </tr>
+    <tr>
+      <td>Repair PDF</td>
+      <td>Fix errors in a damaged PDF file</td>
+    </tr>
 </tbody>
 </table>
 
