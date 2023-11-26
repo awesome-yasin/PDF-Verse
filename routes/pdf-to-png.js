@@ -1,13 +1,13 @@
 const express = require('express');
 const multer = require('multer');
-const { pdf } = require('pdf-to-img');
+const pdf2img = require('pdf-img-convert-web');
 const JSZip = require('jszip');
 const router = express.Router();
 
 const upload = multer({ storage: multer.memoryStorage() });
 
 router.get('/pdf-to-png', (req, res) => {
-  res.render('pdf-to-png', { title: 'Convert PDF to PNG' });
+  res.render('pdf-to-png', { title: 'Convert PDF to Images' });
 });
 
 router.post('/png-convert', upload.single('file'), async (req, res) => {
@@ -19,25 +19,25 @@ router.post('/png-convert', upload.single('file'), async (req, res) => {
   try {
     const pdfBuffer = req.file.buffer;
 
-    const doc = await pdf(pdfBuffer);
-    const outputImages = [];
+    // Convert PDF to images
+    const outputImages = await pdf2img.convert(pdfBuffer, {
+      width: 800, // Specify the width of the output images
+      base64: true, // Set to true for base64-encoded image output
+    });
 
-    for await (const page of doc) {
-      outputImages.push(page);
-    }
-
+    // Create a zip file containing the images
     const zip = new JSZip();
 
     outputImages.forEach((img, i) => {
       zip.file(`output${i}.png`, img);
     });
 
+    // Send the zip file as a response
     zip.generateAsync({ type: 'nodebuffer' }).then(zipBuffer => {
       res.setHeader('Content-Disposition', 'attachment; filename=images.zip');
       res.setHeader('Content-Type', 'application/zip');
       res.send(zipBuffer);
     });
-
   } catch (err) {
     console.error(err);
     res.status(500).send('An error occurred while processing the PDF file.');
