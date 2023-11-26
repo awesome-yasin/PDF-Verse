@@ -1,0 +1,91 @@
+
+        #show-pdf-button {
+            width: 150px;
+            display: block;
+            margin: 20px auto;
+        }
+
+        #file-to-upload {
+            display: none;
+        }
+
+        #pdf-main-container {
+            width: 400px;
+            margin: 20px auto;
+        }
+
+        #pdf-loader {
+            display: none;
+            text-align: center;
+            color: #999999;
+            font-size: 13px;
+            line-height: 100px;
+            height: 100px;
+        }
+
+        #pdf-contents {
+            display: none;
+        }
+
+        #pdf-meta {
+            overflow: hidden;
+            margin: 0 0 20px 0;
+        }
+
+      
+        #page-count-container {
+            float: right;
+        }
+
+        #pdf-current-page {
+            display: inline;
+        }
+
+        #pdf-total-pages {
+            display: inline;
+        }
+
+        #pdf-canvas {
+            border: 1px solid rgba(0, 0, 0, 0.2);
+            box-sizing: border-box;
+        }
+
+        #page-loader {
+            height: 100px;
+            line-height: 100px;
+            text-align: center;
+            display: none;
+            color: #999999;
+            font-size: 13px;
+        }
+        #pdf-input {
+            display: none;
+          }
+        
+          #file-input-label {
+            display: inline-block;
+            width: 80%;
+            height: 250px;
+            
+            background-color: #FD6766;
+            background-size: cover;
+            background-position: center;
+            text-align: center;
+            line-height: 250px;
+            cursor: pointer;
+            color: #fff;
+            position: relative;
+        }
+        
+        #file-input-label::before {
+          content: "";
+          position: absolute;
+          top: -15px;
+          left: -15px;
+          right: -15px;
+          bottom: -15px;
+          border: 2px dashed #aaaaaa;
+          cursor: pointer;
+        }
+        
+    
