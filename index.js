@@ -8,6 +8,7 @@ const deleteRouter = require('./routes/delete');
 const pageNoRoute = require('./routes/pageno');
 const rotatePdf = require('./routes/rotate');
 const pdfToWord = require('./routes/pdf-to-word')
+const pdfToExcel = require('./routes/pdftoexcel')
 const cors = require('cors');
 
 const app = express();
@@ -28,6 +29,7 @@ app.use(deleteRouter);
 app.use(pageNoRoute);
 app.use(rotatePdf);
 app.use(pdfToWord);
+app.use(pdfToExcel);
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.listen(8080, () => {
