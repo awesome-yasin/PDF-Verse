@@ -9,6 +9,7 @@ const pageNoRoute = require('./routes/pageno');
 const rotatePdf = require('./routes/rotate');
 const pdfToWord = require('./routes/pdf-to-word')
 const pdfToExcel = require('./routes/pdftoexcel')
+const pdfToPpt = require('./routes/pdf-to-ppt')
 const cors = require('cors');
 
 const app = express();
@@ -30,6 +31,7 @@ app.use(pageNoRoute);
 app.use(rotatePdf);
 app.use(pdfToWord);
 app.use(pdfToExcel);
+app.use(pdfToPpt)
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.listen(8080, () => {
