@@ -1,10 +1,4 @@
 
-input[type="file"] {
-    height: 0;
-    width: 0;
-    visibility: hidden;
-    position: absolute;
-  }
   .custom-file-upload {
     display: flex;
     justify-content: center;
