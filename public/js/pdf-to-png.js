@@ -18,6 +18,7 @@ async function showPDF(pdf_url) {
     document.querySelector("#pdf-loader").style.display = 'none';
     document.querySelector("#pdf-contents").style.display = 'block';
     document.querySelector("#pdf-total-pages").innerHTML = _TOTAL_PAGES;
+    document.querySelector("#download-zip-button").style.display = 'block';
 
     showPage(1);
 }

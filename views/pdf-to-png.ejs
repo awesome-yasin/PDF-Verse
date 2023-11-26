@@ -15,58 +15,59 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.2.228/pdf.min.js"></script>
     <script src="https://unpkg.com/pdfjs-sequential/dist/pdfjs-sequential.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.5/jszip.min.js"></script>
-
     <link rel="stylesheet" href="/css/pdf-to-image.css">
     <link rel="stylesheet" href="/css/pdf-to-png.css">
-    
+
 </head>
 
 <body>
     <div class="nav-bar"></div>
     <%- include('includes/nav.ejs') %>
-
-
-
-
-        
-
-
         <div class="container main-container">
-            <h1 class="text-center mt-5 font-weight-bold pt-4 heading-main">PDF to Excel Convert</h1>
-            <h5 class="text-center mt-3 font-weight-bold heading-main">Convert your PDF files to Excel spreadsheets
+            <h1 class="text-center mt-5 font-weight-bold pt-4 heading-main">PDF to PNG Convert</h1>
+            <h5 class="text-center mt-3 font-weight-bold heading-main">Convert and view your PDF files to PNG images
                 online, quickly.</h5>
-            <div class="row justify-content-center mt-5" style="display: flex; flex-direction: column; justify-content: center;">
-                        <input type="file" id="pdf-input" accept=".pdf" style="margin: 0 auto;">
-                        <button id="show-pdf-button" class="btn-lg common-btn pl-5 pr-5 mb-5 mt-5">Render PDF</button>
-                        <button id="download-zip-button" class="btn-lg common-btn pl-5 pr-5 mb-5 mt-5">Download Zip</button>
+            <div class="row justify-content-center mt-5"
+                style="display: flex; flex-direction: column; justify-content: center;">
+                <div class="p-5 d-flex align-items-center justify-content-center">
+                    <input type="file" id="pdf-input" accept=".pdf" style="display: none;">
+                    <label for="pdf-input" id="file-input-label">Choose PDF file</label>
+                </div>
+                <div class="p-5 d-flex align-items-center justify-content-center" style="gap: 10px;">
+                    <button id="show-pdf-button" class="btn-lg common-btn flex-grow-1 flex-lg-grow-0"
+                        style="height: 50px; margin: 0 !important;">Render PDF</button>
+                    <button id="download-zip-button" class="btn-lg common-btn flex-grow-1 flex-lg-grow-0"
+                        style="height: 50px; display: none;">Download Zip</button>
+                </div>
+                <div id="pdf-main-container">
+                    <div id="pdf-loader">Loading document ...</div>
+                    <div id="pdf-contents">
 
-                    
-                    <div id="pdf-main-container">
-                        <div id="pdf-loader">Loading document ...</div>
-                        <div id="pdf-contents">
-                            <div id="pdf-meta">
-                                <div id="pdf-buttons">
-                                    <button id="pdf-prev">Previous</button>
-                                    <button id="pdf-next">Next</button>
-                                </div>
-                                <div id="page-count-container">Page <div id="pdf-current-page"></div> of <div id="pdf-total-pages">
+                        <canvas id="pdf-canvas" width="400"></canvas>
+                        <div id="page-loader">Loading page ...</div>
+                        <div id="pdf-meta mt-4" style="margin-top: 20px;">
+                            <div id="pdf-buttons">
+                                <button id="pdf-prev" style="padding: 5px 15px;">Previous</button>
+                                <button id="pdf-next" style="padding: 5px 15px;">Next</button>
+                                <div id="page-count-container">Page <div id="pdf-current-page"></div> of <div
+                                        id="pdf-total-pages">
                                     </div>
                                 </div>
+
                             </div>
-                            <canvas id="pdf-canvas" width="400"></canvas>
-                            <div id="page-loader">Loading page ...</div>
                         </div>
-            
                     </div>
-                              
-                    <div class="container">
-                        <div class="pdfhead mt-4 text-center mb-3"></div>
-                        <ul id="pdf-list" class="list-group mb-4"></ul>
-                        <div class="row">
-                        </div>
+
+                </div>
+
+                <div class="container">
+                    <div class="pdfhead mt-4 text-center mb-3"></div>
+                    <ul id="pdf-list" class="list-group mb-4"></ul>
+                    <div class="row">
                     </div>
                 </div>
             </div>
+        </div>
         </div>
 
 
