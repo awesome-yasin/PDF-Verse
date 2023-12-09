@@ -114,7 +114,7 @@ PDF Verse is an intuitive, powerful and fully responsive web app that provides a
       <td>Convert a PDF document to a PowerPoint presentation</td>
     </tr>
     <tr>
-      <td>PDF To JPG Convert</td>
+      <td><a href="https://pdf-verse.vercel.app/pdf-to-jpg">PDF To JPG Convert</td>
       <td>Convert a PDF document to a JPEG image file</td>
     </tr>
     <tr>
