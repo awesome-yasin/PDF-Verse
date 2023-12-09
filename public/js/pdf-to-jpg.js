@@ -97,7 +97,7 @@ async function convertPageToPNG(page_no) {
         
         await page.render(renderContext).promise;
         
-        return canvas.toDataURL('image/png');
+        return canvas.toDataURL('image/jpg');
     } catch (error) {
         console.error(`Error processing page ${page_no}: ${error.message}`);
         return null;
@@ -118,7 +118,7 @@ async function downloadZip() {
         }
 
         const pngDataUrl = await convertPageToPNG(page_no);
-        window.zip.file(`page-${page_no}.png`, pngDataUrl.split(';base64,').pop(), { base64: true });
+        window.zip.file(`page-${page_no}.jpg`, pngDataUrl.split(';base64,').pop(), { base64: true });
     }
 
     window.zip.generateAsync({ type: 'blob' }).then(function (content) {
