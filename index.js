@@ -11,6 +11,7 @@ const pdfToWord = require('./routes/pdf-to-word')
 const pdfToExcel = require('./routes/pdftoexcel')
 const pdfToPpt = require('./routes/pdf-to-ppt')
 const pdfToPng = require('./routes/pdf-to-png')
+const pdfToJpg = require('./routes/pdf-to-jpg')
 const cors = require('cors');
 
 const app = express();
@@ -33,7 +34,8 @@ app.use(rotatePdf);
 app.use(pdfToWord);
 app.use(pdfToExcel);
 app.use(pdfToPpt);
-app.use(pdfToPng)
+app.use(pdfToPng);
+app.use(pdfToJpg);
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.listen(8080, () => {
