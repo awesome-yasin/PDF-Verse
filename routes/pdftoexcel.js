@@ -28,7 +28,7 @@ function applyCellStyle(cell, isHeader = false) {
     cell.style(style);
   }
 
-router.get('/pdftoexcel', (req, res) => {
+router.get('/pdf-to-excel', (req, res) => {
     res.render('pdftoexcel', {
         title: 'Convert PDF to Excel',
         options: {
