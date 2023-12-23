@@ -12,6 +12,7 @@ const pdfToExcel = require('./routes/pdftoexcel')
 const pdfToPpt = require('./routes/pdf-to-ppt')
 const pdfToPng = require('./routes/pdf-to-png')
 const pdfToJpg = require('./routes/pdf-to-jpg')
+const pdfToJson = require('./routes/pdf-to-json')
 const cors = require('cors');
 
 const app = express();
@@ -36,6 +37,7 @@ app.use(pdfToExcel);
 app.use(pdfToPpt);
 app.use(pdfToPng);
 app.use(pdfToJpg);
+app.use(pdfToJson)
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.listen(8080, () => {

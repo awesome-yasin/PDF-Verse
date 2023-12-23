@@ -29,6 +29,7 @@
     "pdf-lib": "^1.17.1",
     "pdf-parse": "^1.1.1",
     "pdf-watermark": "^1.0.3",
+    "pdf2json": "^3.0.5",
     "pdf2pic": "^2.1.4",
     "pdf2table": "^0.0.2",
     "pdfjs-dist": "^3.11.174",
