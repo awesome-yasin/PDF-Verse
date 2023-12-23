@@ -129,6 +129,7 @@ function flattenTables(rows, numberOfColumns) {
         tables.push(tableSegment);
     }
     
+    
     const flattened = tables.reduce((flattened, table) => flattened.concat(table), []);
     return flattened;
     }
