@@ -144,8 +144,8 @@ PDF Verse is an intuitive, powerful and fully responsive web app that provides a
       <td>Convert a PDF document to a PNG image file</td>
     </tr>
     <tr>
-      <td>PDF To HTML Convert</td>
-      <td>Convert a PDF document to an HTML file</td>
+      <td>PDF to JSON Convert</td>
+      <td>Convert a PDF document to an JSON file</td>
     </tr>
     <tr>
       <td>PDF To TIFF Convert</td>
