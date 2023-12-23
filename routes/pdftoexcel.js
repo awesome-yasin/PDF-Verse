@@ -28,7 +28,7 @@ function applyCellStyle(cell, isHeader = false) {
     cell.style(style);
   }
 
-router.get('/pdf-to-excel', (req, res) => {
+router.get('/pdftoexcel', (req, res) => {
     res.render('pdftoexcel', {
         title: 'Convert PDF to Excel',
         options: {
@@ -57,16 +57,20 @@ router.post('/excel-convert', upload.single('file'), (req, res) => {
             res.status(400).send('Invalid selected pages range.');
             return;
         }
+        console.log("Rows before flattening:", rows);
 
         rows = handleSelectedPages(rows, selectedPages);
 
         
         if (tableOption === 'Flatten') {
-            rows = flattenTables(rows);
+            const numberOfColumns = determineNumberOfColumns(rows);
+            rows = flattenTables(rows, numberOfColumns);
         }
+        
 
         let workbook = new excel.Workbook();
         let worksheet = workbook.addWorksheet('Sheet 1');
+        console.log(rows);
 
         rows.forEach((row, rowIndex) => {
             row.forEach((cellValue, cellIndex) => {
@@ -84,6 +88,18 @@ router.post('/excel-convert', upload.single('file'), (req, res) => {
         });
     });
 });
+
+function determineNumberOfColumns(rows) {
+    const firstRowItem = rows[0];
+    for (let i = 1; i < rows.length; i++) {
+        if (rows[i] === firstRowItem) {
+            return i;
+        }
+    }
+    return rows.length;
+}
+
+
 
 function handleSelectedPages(rows, selectedPages, totalPages) {
     if (!selectedPages) return rows;
@@ -106,10 +122,17 @@ function handleSelectedPages(rows, selectedPages, totalPages) {
     return selectedLines;
 }
 
-function flattenTables(rows) {
-    return rows.reduce((flattened, table) => {
-        return flattened.concat(table);
-    }, []);
-}
+function flattenTables(rows, numberOfColumns) {
+    const tables = [];
+    for (let i = 0; i < rows.length; i += numberOfColumns) {
+        const tableSegment = rows.slice(i, i + numberOfColumns);
+        tables.push(tableSegment);
+    }
+    
+    
+    const flattened = tables.reduce((flattened, table) => flattened.concat(table), []);
+    return flattened;
+    }
+
 
 module.exports = router;
