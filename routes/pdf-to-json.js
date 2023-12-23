@@ -9,7 +9,7 @@ router.get('/pdf-to-json', (req, res) => {
     res.render('pdf-to-json', { title: 'Convert PDF to JSON Files' });
   });
 
-  router.post('/convert-pdf-to-json', upload.single('pdf'), (req, res) => {
+  router.post('/convert-pdf-to-json', upload.single('file'), (req, res) => {
     if (!req.file) {
         return res.status(400).send('No file uploaded.');
     }
@@ -17,12 +17,20 @@ router.get('/pdf-to-json', (req, res) => {
     const fileBuffer = req.file.buffer;
 
     pdfParse(fileBuffer).then(function(data) {
+        let jsonData;
         try {
-            const jsonData = JSON.parse(data.text);
-            res.json(jsonData);
+            jsonData = JSON.parse(data.text);
         } catch (error) {
-            res.json({ text: data.text });
+            jsonData = { text: data.text };
         }
+
+        const jsonContent = JSON.stringify(jsonData, null, 4);
+        const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
+        const filename = `converted-${timestamp}.json`;
+
+        res.setHeader('Content-disposition', `attachment; filename=${filename}`);
+        res.setHeader('Content-type', 'application/json');
+        res.send(jsonContent);
     }).catch(function(error) {
         console.error("PDF parsing error: ", error);
         res.status(500).send('Error processing PDF file.');
@@ -31,17 +39,15 @@ router.get('/pdf-to-json', (req, res) => {
 
 
 
+
 function formatExtractedText(text) {
-    // Remove unnecessary line breaks and spaces
     let formattedText = text.replace(/\n\s*\n/g, '\n');
 
-    // Further formatting can be done here depending on the expected content
-    // For example, you might want to convert it to a proper JSON object if it's JSON-like
+    
     try {
         let jsonObject = JSON.parse(formattedText);
-        return JSON.stringify(jsonObject, null, 4); // Beautify JSON
+        return JSON.stringify(jsonObject, null, 4);
     } catch (e) {
-        // If it's not valid JSON, return the original formatted text
         return formattedText;
     }
 }
