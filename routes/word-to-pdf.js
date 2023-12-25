@@ -1,10 +1,13 @@
+
+
+
+
 const express = require('express');
 const multer = require('multer');
 const upload = multer({ storage: multer.memoryStorage() });
 const mammoth = require('mammoth');
-const puppeteer = require('puppeteer');
+const pdf = require('html-pdf');
 const router = express.Router();
-const chromium = require('chrome-aws-lambda');
 
 const customStyles = `
     body { 
@@ -59,8 +62,6 @@ const customStyles = `
     }
 `;
 
-
-
 router.get('/word-to-pdf', (req, res) => {
     res.render('word-to-pdf');
 });
@@ -71,33 +72,28 @@ router.post('/wordconvert', upload.single('documents'), async (req, res) => {
     }
 
     try {
-        
+        // Convert Word to HTML using the buffer from the uploaded file
         const { value: html } = await mammoth.convertToHtml({ buffer: req.file.buffer });
 
-        const browser = await chromium.puppeteer.launch({
-            args: chromium.args,
-            defaultViewport: chromium.defaultViewport,
-            executablePath: await chromium.executablePath,
-            headless: chromium.headless,
-        });
-        
-        const page = await browser.newPage();
-        
         // Combine the custom styles with the converted HTML
         const styledHtml = `<style>${customStyles}</style>${html}`;
-        await page.setContent(styledHtml);
 
-        const pdfBuffer = await page.pdf();
-        await browser.close();
+        // Convert HTML to PDF using html-pdf
+        pdf.create(styledHtml).toBuffer((err, buffer) => {
+            if (err) {
+                console.error('Conversion error:', err);
+                return res.status(500).send('Error converting document.');
+            }
+            res.setHeader('Content-Disposition', 'attachment; filename=converted.pdf');
+            res.setHeader('Content-Type', 'application/pdf');
+            res.send(buffer);
+        });
 
-        res.setHeader('Content-Disposition', 'attachment; filename=converted.pdf');
-        res.setHeader('Content-Type', 'application/pdf');
-        res.send(pdfBuffer);
     } catch (error) {
         console.error('Conversion error:', error);
         res.status(500).send('Error converting document.');
     }
 });
 
-
 module.exports = router;
+
