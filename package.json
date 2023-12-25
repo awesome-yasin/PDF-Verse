@@ -13,6 +13,7 @@
     "@pdf-lib/fontkit": "^1.1.1",
     "axios": "^1.3.4",
     "body-parser": "^1.20.2",
+    "chrome-aws-lambda": "^10.1.0",
     "cors": "^2.8.5",
     "docxtemplater": "^3.42.2",
     "ejs": "^3.1.9",
@@ -36,6 +37,7 @@
     "pdfjs-dist": "^3.11.174",
     "pdfmake": "^0.2.7",
     "puppeteer": "^21.6.1",
+    "puppeteer-core": "^10.1.0",
     "uuid": "^9.0.0",
     "xhr2": "^0.2.1",
     "zlib": "^1.0.5"

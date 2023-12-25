@@ -4,6 +4,7 @@ const upload = multer({ storage: multer.memoryStorage() });
 const mammoth = require('mammoth');
 const puppeteer = require('puppeteer');
 const router = express.Router();
+const chromium = require('chrome-aws-lambda');
 
 const customStyles = `
     body { 
@@ -70,9 +71,16 @@ router.post('/wordconvert', upload.single('documents'), async (req, res) => {
     }
 
     try {
+        
         const { value: html } = await mammoth.convertToHtml({ buffer: req.file.buffer });
 
-        const browser = await puppeteer.launch();
+        const browser = await chromium.puppeteer.launch({
+            args: chromium.args,
+            defaultViewport: chromium.defaultViewport,
+            executablePath: await chromium.executablePath,
+            headless: chromium.headless,
+        });
+        
         const page = await browser.newPage();
         
         // Combine the custom styles with the converted HTML
