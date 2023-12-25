@@ -15,6 +15,7 @@ const pdfToJpg = require('./routes/pdf-to-jpg')
 const pdfToJson = require('./routes/pdf-to-json');
 const pdfToTiff = require('./routes/pdf-to-tiff')
 const pdfToTxt = require('./routes/pdf-to-txt')
+const wordToPdf = require('./routes/word-to-pdf')
 const cors = require('cors');
 
 const app = express();
@@ -41,7 +42,8 @@ app.use(pdfToPng);
 app.use(pdfToJpg);
 app.use(pdfToJson)
 app.use(pdfToTiff)
-app.use(pdfToTxt)
+app.use(pdfToTxt);
+app.use(wordToPdf)
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.listen(8080, () => {
