@@ -70,23 +70,23 @@ PDF Verse is an intuitive, powerful and fully responsive web app that provides a
   </thead>
   <tbody>
     <tr>
-      <td><a href = "https://pdf-verse.vercel.app/pdfeditor">Edit PDF</a></td>
+      <td><a href = "https://pdf-verse.vercel.app/pdfeditor" target="_blank">Edit PDF</a></td>
       <td>Modify text and images in a PDF file</td>
     </tr>
     <tr>
-	    <td><a href="https://pdf-verse.vercel.app">Merge PDF Files</a></td>
+	    <td><a href="https://pdf-verse.vercel.app" target="_blank">Merge PDF Files</a></td>
       <td>Combine multiple PDF files into a single document</td>
     </tr>
     <tr>
-	    <td><a href="https://pdf-verse.vercel.app/splitpdf">Split PDF Files</a></td>
+	    <td><a href="https://pdf-verse.vercel.app/splitpdf" target="_blank">Split PDF Files</a></td>
       <td>Divide a PDF document into smaller files</td>
     </tr>
     <tr>
-	    <td><a href="https://pdf-verse.vercel.app/watermark-pdf">Watermark PDF Pages</a></td>
+	    <td><a href="https://pdf-verse.vercel.app/watermark-pdf" target="_blank">Watermark PDF Pages</a></td>
       <td>Add text or an image to each page of a PDF file</td>
     </tr>
     <tr>
-      <td><a href="https://pdf-verse.vercel.app/delete">Delete PDF Pages</td>
+      <td><a href="https://pdf-verse.vercel.app/delete" target="_blank">Delete PDF Pages</td>
       <td>Remove pages from a PDF document</td>
     </tr>
     <tr>
@@ -94,43 +94,43 @@ PDF Verse is an intuitive, powerful and fully responsive web app that provides a
       <td>Reduce the file size of a PDF document</td>
     </tr>
     <tr>
-      <td><a href="https://pdf-verse.vercel.app/rotate">Rotate PDF Files</td>
+      <td><a href="https://pdf-verse.vercel.app/rotate" target="_blank">Rotate PDF Files</td>
       <td>Change the orientation of a PDF document</td>
     </tr>
     <tr>
-      <td><a href="https://pdf-verse.vercel.app/add-page-number">Add Page Numbers</td>
+      <td><a href="https://pdf-verse.vercel.app/add-page-number" target="_blank">Add Page Numbers</td>
       <td>Insert page numbers into a PDF document</td>
     </tr>
     <tr>
-      <td><a href="https://pdf-verse.vercel.app/pdf-to-word">PDF To Word Convert</td>
+      <td><a href="https://pdf-verse.vercel.app/pdf-to-word" target="_blank">PDF To Word Convert</td>
       <td>Convert a PDF document to a Word file</td>
     </tr>
     <tr>
-      <td><a href="https://pdf-verse.vercel.app/pdf-to-excel">PDF To Excel Convert</td>
+      <td><a href="https://pdf-verse.vercel.app/pdf-to-excel" target="_blank">PDF To Excel Convert</td>
       <td>Convert a PDF document to an Excel file</td>
     </tr>
     <tr>
-      <td><a href="https://pdf-verse.vercel.app/pdf-to-ppt">PDF To PPT Convert</td>
+      <td><a href="https://pdf-verse.vercel.app/pdf-to-ppt" target="_blank">PDF To PPT Convert</td>
       <td>Convert a PDF document to a PowerPoint presentation</td>
     </tr>
     <tr>
-      <td><a href="https://pdf-verse.vercel.app/pdf-to-jpg">PDF To JPG Convert</td>
+      <td><a href="https://pdf-verse.vercel.app/pdf-to-jpg" target="_blank">PDF To JPG Convert</td>
       <td>Convert a PDF document to a JPEG image file</td>
     </tr>
     <tr>
-      <td><a href="https://pdf-verse.vercel.app/pdf-to-png">PDF To PNG Convert</td>
+      <td><a href="https://pdf-verse.vercel.app/pdf-to-png" target="_blank">PDF To PNG Convert</td>
       <td>Convert a PDF document to a PNG image file</td>
     </tr>
     <tr>
-      <td><a href="https://pdf-verse.vercel.app/pdf-to-json">PDF to JSON Convert</td>
+      <td><a href="https://pdf-verse.vercel.app/pdf-to-json" target="_blank">PDF to JSON Convert</td>
       <td>Convert a PDF document to an JSON file</td>
     </tr>
     <tr>
-      <td><a href="https://pdf-verse.vercel.app/pdf-to-tiff">PDF To TIFF Convert</td>
+      <td><a href="https://pdf-verse.vercel.app/pdf-to-tiff" target="_blank">PDF To TIFF Convert</td>
       <td>Convert a PDF document to a TIFF image file</td>
     </tr>
     <tr>
-      <td><a href="https://pdf-verse.vercel.app/pdf-to-txt">PDF To Text Convert</td>
+      <td><a href="https://pdf-verse.vercel.app/pdf-to-txt" target="_blank">PDF To Text Convert</td>
       <td>Convert a PDF document to a plain text file</td>
     </tr>
     <tr>
