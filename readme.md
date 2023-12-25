@@ -130,7 +130,7 @@ PDF Verse is an intuitive, powerful and fully responsive web app that provides a
       <td>Convert a PDF document to a TIFF image file</td>
     </tr>
     <tr>
-      <td>PDF To Text Convert</td>
+      <td><a href="https://pdf-verse.vercel.app/pdf-to-txt">PDF To Text Convert</td>
       <td>Convert a PDF document to a plain text file</td>
     </tr>
     <tr>
