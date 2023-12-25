@@ -126,7 +126,7 @@ PDF Verse is an intuitive, powerful and fully responsive web app that provides a
       <td>Convert a PDF document to an JSON file</td>
     </tr>
     <tr>
-      <td>PDF To TIFF Convert</td>
+      <td><a href="https://pdf-verse.vercel.app/pdf-to-tiff">PDF To TIFF Convert</td>
       <td>Convert a PDF document to a TIFF image file</td>
     </tr>
     <tr>
