@@ -122,7 +122,7 @@ PDF Verse is an intuitive, powerful and fully responsive web app that provides a
       <td>Convert a PDF document to a PNG image file</td>
     </tr>
     <tr>
-      <td>PDF to JSON Convert</td>
+      <td><a href="https://pdf-verse.vercel.app/pdf-to-json">PDF to JSON Convert</td>
       <td>Convert a PDF document to an JSON file</td>
     </tr>
     <tr>
