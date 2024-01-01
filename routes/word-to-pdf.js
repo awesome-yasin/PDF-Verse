@@ -1,11 +1,11 @@
 const express = require('express');
 const multer = require('multer');
-const mammoth = require('mammoth');
-const puppeteer = require('puppeteer-core');
-const chromium = require('@sparticuz/chromium');
-const router = express.Router();
-
 const upload = multer({ storage: multer.memoryStorage() });
+const mammoth = require('mammoth');
+const pdf = require('html-pdf');
+const router = express.Router();
+var chromium = require("chrome-aws-lambda");
+var playwright = require("playwright-core");
 
 const customStyles = `
     body { 
@@ -17,18 +17,18 @@ const customStyles = `
         color: #333;
     }
     h1, h2, h3, h4, h5, h6 { 
-        text-align: center;
+        
         color: #333;
     }
     p { 
         text-align: justify; 
         margin-bottom: 15px;
-        text-align: center;
+        
     }
     ul, ol {
         padding-left: 20px;
         margin-bottom: 15px;
-        text-align: center;
+       
     }
     li {
         margin-bottom: 10px;
@@ -64,36 +64,29 @@ router.get('/word-to-pdf', (req, res) => {
     res.render('word-to-pdf');
 });
 
-chromium.setHeadlessMode = true;
-
 router.post('/wordconvert', upload.single('documents'), async (req, res) => {
     if (!req.file) {
         return res.status(400).send('No file uploaded.');
     }
 
-    let result = null;
-  let browser = null;
-
     try {
         const { value: html } = await mammoth.convertToHtml({ buffer: req.file.buffer });
-        
-       browser = await puppeteer.launch({
-      args: chromium.args,
-      defaultViewport: chromium.defaultViewport,
 
-      executablePath: await chromium.executablePath(),
-      headless: chromium.headless,
-      ignoreHTTPSErrors: true,
-      headless:false,
-    args: ["--no-sandbox"]
-
-    });
-        
-        
+         // Launching the browser with chrome-aws-lambda
+         const browser = await playwright.chromium.launch({
+            args: [...chromium.args, "--font-render-hinting=none"],
+            executablePath:
+              process.env.NODE_ENV === "production"
+                ? await chromium.executablePath
+                : "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
+            headless:
+              process.env.NODE_ENV === "production" ? chromium.headless : true,
+          });
 
         const page = await browser.newPage();
-        await page.setContent(html);
-        const pdfBuffer = await page.pdf({ format: 'A4' });
+        await page.setContent(`<style>${customStyles}</style>${html}`);
+
+        const pdfBuffer = await page.pdf({ format: 'A4', printBackground: true });
         await browser.close();
 
         res.setHeader('Content-Disposition', 'attachment; filename=converted.pdf');
@@ -105,6 +98,81 @@ router.post('/wordconvert', upload.single('documents'), async (req, res) => {
     }
 });
 
+module.exports = router;
+
+
+// NOTE: This code will be using An API for better conversion use this API but it will be paid.
+/*
+
+const express = require('express');
+const multer = require('multer');
+const axios = require('axios');
+const fs = require('fs');
+const path = require('path');
+const router = express.Router();
+
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, 'uploads/')
+    },
+    filename: function (req, file, cb) {
+        cb(null, file.originalname)
+    }
+});
+const upload = multer({ storage: storage });
+
+router.get('/word-to-pdf', (req, res) => {
+    res.render('word-to-pdf');
+});
+
+
+router.post('/upload-word-file', upload.single('documents'), async (req, res) => {
+    if (!req.file) {
+        return res.status(400).send('No file uploaded.');
+    }
+
+    const API_KEY = '---API KEY---';
+
+    try {
+        const [uploadUrl, uploadedFileUrl] = await getPresignedUrl(API_KEY, req.file);
+
+        await uploadFile(uploadUrl, req.file.path);
+
+        const response = await convertDocToPdf(API_KEY, uploadedFileUrl);
+
+        res.json({ pdfUrl: response.url });
+    } catch (error) {
+        console.error('Error:', error);
+        res.status(500).send('Error processing the file.');
+    } finally {
+    }
+});
+
+async function getPresignedUrl(apiKey, file) {
+    const response = await axios.get(`https://api.pdf.co/v1/file/upload/get-presigned-url?contenttype=application/octet-stream&name=${path.basename(file.originalname)}`, {
+        headers: { 'x-api-key': apiKey }
+    });
+    return [response.data.presignedUrl, response.data.url];
+}
+
+async function uploadFile(uploadUrl, filePath) {
+    const fileContent = fs.readFileSync(filePath);
+    await axios.put(uploadUrl, fileContent, {
+        headers: { 'Content-Type': 'application/octet-stream' }
+    });
+}
+
+async function convertDocToPdf(apiKey, uploadedFileUrl) {
+    const response = await axios.post('https://api.pdf.co/v1/pdf/convert/from/doc', {
+        url: uploadedFileUrl,
+        name: path.basename(uploadedFileUrl)
+    }, {
+        headers: { 'x-api-key': apiKey }
+    });
+    return response.data;
+}
 
 module.exports = router;
 
+
+*/
