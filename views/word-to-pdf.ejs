@@ -10,12 +10,6 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"></script>
 <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" />
-<script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/2.3.6/purify.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.3.1/jspdf.umd.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.4.2/mammoth.browser.min.js"></script>
-
-
 <link rel="stylesheet" href="/css/merger.css">
 </head>
 <body>
@@ -26,7 +20,7 @@
         <h5 class="text-center mt-3 font-weight-bold heading-main">Convert Word documents into PDF files with our easy-to-use FREE online converter tool.</h5>
         <div class="row justify-content-center mt-5">
           <div class="col-md-10 text-center">
-           
+            <form action="/wordconvert" method="post" enctype="multipart/form-data" id="pdf-dropzone">
               <div class="fallback">
                 <div class="custom-file-upload custom-file-upload-color-1" id="pdf-dropzone">
                     <img src="/images/pdf.png" alt="" srcset="" width="72" height="72">
@@ -34,8 +28,8 @@
                   <input type="file" name="documents" accept=".docx" required id="pdfs" class="form-control-file">
                 </div>
               </div>
-              <button onclick="convertToPdf()" class="btn-lg common-btn pl-5 pr-5 mb-5 mt-5">Convert PDF</button>
-            
+              <input type="submit" value="Convert PDF" class="btn-lg common-btn pl-5 pr-5 mb-5 mt-5">
+            </form>
             <div class="container">
               <div class="pdfhead mt-4 text-center mb-3"></div>
               <ul id="pdf-list" class="list-group mb-4"></ul>
@@ -46,9 +40,6 @@
         </div>
       </div>
     
-      <div id="loadingMessage" style="display: none;">Converting PDF, please wait...</div>
-      <div id="displayConvertedHtml"></div>
-
 
 
     <%- include('includes/alltools.ejs') %>
@@ -61,94 +52,5 @@
 
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
         <script src="/js/split.js"></script>
-
-        <script>
-        const customStyles = `
-    body { 
-        font-family: 'Helvetica', sans-serif; 
-        margin: 40px; 
-        line-height: 1.6;
-        padding: 20px;
-        color: #333;
-        font-size: 16px;
-    }
-    h1, h2, h3, h4, h5, h6 { 
-        text-align: center;
-        color: #333;
-    }
-    p { 
-        text-align: justify; 
-        margin-bottom: 15px;
-    }
-    ul, ol {
-        padding-left: 20px;
-        margin-bottom: 15px;
-    }
-    li {
-        margin-bottom: 10px;
-    }
-    table {
-        width: 100%;
-        border-collapse: collapse;
-    }
-    th, td {
-        border: 1px solid #ddd;
-        padding: 8px;
-        text-align: left;
-    }
-    th {
-        background-color: #f2f2f2;
-    }
-    img {
-        max-width: 100%;
-        height: auto;
-        display: block;
-        margin: 0 auto;
-    }
-    .center-text {
-        text-align: center;
-    }
-    .page-break {
-        page-break-after: always;
-    }
-`;
-
-async function convertToPdf() {
-    const file = document.getElementById('pdfs').files[0];
-    if (file) {
-        document.getElementById('loadingMessage').style.display = 'block'; // Show loading message
-        const arrayBuffer = await file.arrayBuffer();
-        mammoth.convertToHtml({ arrayBuffer: arrayBuffer })
-            .then(function(result) {
-                const html = `<style>${customStyles}</style>` + result.value; // Apply custom styles
-                fetch('/convert-html-to-pdf', {
-            method: 'POST',
-            headers: { 'Content-Type': 'text/html' },
-            body: html
-        })
-        .then(response => response.blob())
-        .then(blob => {
-            const url = window.URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = 'converted.pdf';
-            document.body.appendChild(a); // Append the element to the DOM
-            a.click();
-            a.remove(); // Clean up
-            window.URL.revokeObjectURL(url);
-        })
-        .catch(err => console.error('Error:', err))
-        .finally(() => {
-            document.getElementById('loadingMessage').style.display = 'none';
-        });
-            })
-            .catch(function(err) {
-                console.error('Conversion error:', err);
-                document.getElementById('loadingMessage').style.display = 'none'; // Hide loading message
-            });
-    }
-}
-
-      </script>
 </body>
 </html>
