@@ -1,28 +1,27 @@
-const express = require('express');
-const multer = require('multer');
-const path = require('path');
-const fs = require('fs');
-const { PDFDocument } = require('pdf-lib');
-const sharp = require('sharp');
+const express = require("express");
+const multer = require("multer");
+const fs = require("fs");
+const { PDFDocument } = require("pdf-lib");
+const sharp = require("sharp");
 const router = express.Router();
-const pdf2pic = require('pdf2pic');
+const pdf2pic = require("pdf2pic");
 
-const upload = multer({ dest: 'uploads/' });
-router.get('/compress-pdf', (req, res) => {
-  res.render('compress');
+const upload = multer({ dest: "uploads/" });
+router.get("/compress-pdf", (req, res) => {
+  res.render("compress");
 });
 
-router.post('/compress', upload.single('pdfFile'), async (req, res) => {
+router.post("/compress", upload.single("pdfFile"), async (req, res) => {
   const pdfBuffer = fs.readFileSync(req.file.path);
   const pdfDoc = await PDFDocument.load(pdfBuffer);
 
   // Remove metadata
-  pdfDoc.setTitle('');
-  pdfDoc.setAuthor('');
-  pdfDoc.setSubject('');
+  pdfDoc.setTitle("");
+  pdfDoc.setAuthor("");
+  pdfDoc.setSubject("");
   pdfDoc.setKeywords([]);
-  pdfDoc.setProducer('');
-  pdfDoc.setCreator('');
+  pdfDoc.setProducer("");
+  pdfDoc.setCreator("");
 
   // Convert PDF pages to images, compress them, and add them back to a new PDF
   const newPdfDoc = await PDFDocument.create();
@@ -30,10 +29,10 @@ router.post('/compress', upload.single('pdfFile'), async (req, res) => {
 
   // Configure pdf2pic options
   const pdf2picOptions = {
-    format: 'png',
-    size: '600x600',
+    format: "png",
+    size: "600x600",
     density: 72,
-    savePath: './temp-images',
+    savePath: "./temp-images",
   };
   const converter = pdf2pic(pdf2picOptions);
 
@@ -49,7 +48,7 @@ router.post('/compress', upload.single('pdfFile'), async (req, res) => {
 
     // Compress image using Sharp
     const compressedImage = await sharp(pngImage)
-      .resize(width, height, { fit: 'inside' })
+      .resize(width, height, { fit: "inside" })
       .jpeg({ quality: 50 })
       .toBuffer();
 
@@ -68,14 +67,14 @@ router.post('/compress', upload.single('pdfFile'), async (req, res) => {
   }
 
   const compressedPdfBytes = await newPdfDoc.save();
-  fs.writeFileSync('compressed.pdf', compressedPdfBytes);
+  fs.writeFileSync("compressed.pdf", compressedPdfBytes);
 
   // Clean up uploaded file
   fs.unlinkSync(req.file.path);
 
-  res.download('compressed.pdf', 'compressed.pdf', (err) => {
+  res.download("compressed.pdf", "compressed.pdf", (err) => {
     if (err) throw err;
-    fs.unlinkSync('compressed.pdf');
+    fs.unlinkSync("compressed.pdf");
   });
 });
 

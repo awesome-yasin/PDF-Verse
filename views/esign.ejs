@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>eSign PDF</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/images/favicon.ico" />
+
+    <!-- External CSS and JS -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"></script>
+    <link
+      href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css"
+    />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/merger.css" />
+    <style>
+      .custom-file-upload {
+        border: 1px solid #ccc;
+        display: inline-block;
+        padding: 6px 12px;
+        cursor: pointer;
+        text-align: center;
+        background: #f8f9fa;
+        border-radius: 4px;
+      }
+      .custom-file-upload-color-1 {
+        background: #e9ecef;
+      }
+      .common-btn {
+        background-color: #007bff;
+        color: white;
+        border-radius: 5px;
+        padding: 10px 20px;
+      }
+      .common-btn:hover {
+        background-color: #0056b3;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Include Navigation -->
+    <%- include('includes/nav.ejs') %>
+
+    <!-- Main Container for eSign PDF -->
+    <div class="container main-container" style="width: 90%">
+      <h1 class="text-center mt-5 font-weight-bold pt-4 heading-main">
+        eSign PDF
+      </h1>
+      <h5 class="text-center mt-3 font-weight-bold heading-main">
+        Sign and Secure Your PDF Documents with Ease
+      </h5>
+      <div class="row justify-content-center mt-5">
+        <div class="col-md-10 text-center">
+          <form method="POST" enctype="multipart/form-data" action="/esign">
+            <div class="form-group">
+              <div
+                class="custom-file-upload custom-file-upload-color-1"
+                onclick="document.getElementById('pdfFile').click()"
+              >
+                <img src="/images/pdf.png" alt="PDF" width="72" height="72" />
+                <label for="pdfFile">Choose PDF File</label>
+                <input
+                  type="file"
+                  name="pdfFile"
+                  id="pdfFile"
+                  accept=".pdf"
+                  required
+                  class="form-control-file"
+                  style="display: none"
+                />
+              </div>
+            </div>
+
+            <!-- Additional parameters for signing -->
+            <div class="form-group">
+              <label for="signatureText">Signature Text</label>
+              <input
+                type="text"
+                name="signatureText"
+                id="signatureText"
+                class="form-control"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="fontSize">Font Size</label>
+              <input
+                type="number"
+                name="fontSize"
+                id="fontSize"
+                class="form-control"
+                value="30"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="color"
+                >Color (RGB values, e.g., 0,0,1 for Blue)</label
+              >
+              <input
+                type="text"
+                name="color"
+                id="color"
+                class="form-control"
+                value="0,0,1"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="xPos">X Position</label>
+              <input
+                type="number"
+                name="xPos"
+                id="xPos"
+                class="form-control"
+                value="50"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="yPos">Y Position</label>
+              <input
+                type="number"
+                name="yPos"
+                id="yPos"
+                class="form-control"
+                value="50"
+                required
+              />
+            </div>
+
+            <button type="submit" class="btn-lg common-btn pl-5 pr-5 mb-5 mt-2">
+              Sign PDF
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- Include All Tools Section -->
+    <%- include('includes/alltools.ejs') %>
+
+    <!-- Include Services Section -->
+    <%- include('includes/services.ejs') %>
+
+    <!-- Include How To Section -->
+    <%- include('includes/howto.ejs') %>
+
+    <!-- Include Footer Section -->
+    <%- include('includes/footer.ejs') %>
+
+    <!-- External JS -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  </body>
+</html>
